@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="header">
+    <h2>Tasks</h2>
+    <button mat-raised-button color="primary" (click)="openTaskDialog()">
+      <mat-icon>add</mat-icon>
+      New Task
+    </button>
+  </div>
+
+  <div class="board">
+    <!-- To Do Column -->
+    <div class="column">
+      <h3>To Do</h3>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todoTasks"
+        [cdkDropListConnectedTo]="[inProgressList, doneList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+        id="todoList">
+        <mat-card class="task-card" *ngFor="let task of todoTasks" cdkDrag [ngClass]="getTaskStatusClass(task)">
+          <div class="task-header">
+            <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            <h4>{{task.title}}</h4>
+          </div>
+          <p class="due-date" appHighlightOverdue [dueDate]="task.dueDate" [completed]="task.completed">
+            Due: {{task.dueDate | date}}
+          </p>
+          <div class="task-actions">
+            <button mat-icon-button color="primary" (click)="openTaskDialog(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- In Progress Column -->
+    <div class="column">
+      <h3>In Progress</h3>
+      <div
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="inProgressTasks"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+        id="inProgressList">
+        <mat-card class="task-card" *ngFor="let task of inProgressTasks" cdkDrag [ngClass]="getTaskStatusClass(task)">
+          <div class="task-header">
+            <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            <h4>{{task.title}}</h4>
+          </div>
+          <p class="due-date" appHighlightOverdue [dueDate]="task.dueDate" [completed]="task.completed">
+            Due: {{task.dueDate | date}}
+          </p>
+          <div class="task-actions">
+            <button mat-icon-button color="primary" (click)="openTaskDialog(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Done Column -->
+    <div class="column">
+      <h3>Done</h3>
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="doneTasks"
+        [cdkDropListConnectedTo]="[todoList, inProgressList]"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)"
+        id="doneList">
+        <mat-card class="task-card" *ngFor="let task of doneTasks" cdkDrag [ngClass]="getTaskStatusClass(task)">
+          <div class="task-header">
+            <mat-icon class="drag-handle" cdkDragHandle>drag_indicator</mat-icon>
+            <h4>{{task.title}}</h4>
+          </div>
+          <p class="due-date" appHighlightOverdue [dueDate]="task.dueDate" [completed]="task.completed">
+            Due: {{task.dueDate | date}}
+          </p>
+          <div class="task-actions">
+            <button mat-icon-button color="primary" (click)="openTaskDialog(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-dialog-content {
+  min-width: 400px;
+}
+
+mat-checkbox {
+  margin-top: 16px;
+}
+.dark-theme {
+  background-color: #303030;
+  color: #ffffff;
+}
+  mat-dialog-content {
+    background-color: #303030;
+    color: #ffffff;
+  }
+

@@ -1,0 +1,183 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f5f5f5;
+  --primary-text: #333333;
+  --secondary-text: #666666;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --table-header-bg: #f5f5f5;
+  --table-row-hover: #f5f5f5;
+  --button-primary: #3f51b5;
+  --button-primary-text: #ffffff;
+  --button-warn: #f44336;
+  --button-warn-text: #ffffff;
+}
+
+.dark-theme {
+  --primary-bg: #303030;
+  --secondary-bg: #424242;
+  --primary-text: #ffffff;
+  --secondary-text: #b0b0b0;
+  --border-color: #505050;
+  --card-bg: #424242;
+  --table-header-bg: #424242;
+  --table-row-hover: #4a4a4a;
+  --button-primary: #424242;
+  --button-primary-text: #ffffff;
+  --button-warn: #d32f2f;
+  --button-warn-text: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container styles */
+.container {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: var(--primary-text);
+}
+
+.header h1, .header h2 {
+  color: var(--primary-text);
+  margin: 0;
+}
+
+/* Material Theme Overrides */
+.mat-app-background {
+  background-color: var(--primary-bg);
+}
+
+.mat-toolbar {
+  background-color: var(--secondary-bg) !important;
+  color: var(--primary-text) !important;
+}
+
+.mat-card {
+  background-color: var(--card-bg) !important;
+  color: var(--primary-text) !important;
+}
+
+/* Table styles */
+.mat-table {
+  background-color: var(--primary-bg) !important;
+  color: var(--primary-text) !important;
+}
+
+.mat-header-row {
+  background-color: var(--table-header-bg) !important;
+}
+
+.mat-row:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+.mat-header-cell {
+  color: var(--primary-text) !important;
+  font-weight: bold;
+}
+
+.mat-cell {
+  color: var(--primary-text) !important;
+}
+
+/* Form field styles */
+.mat-form-field {
+  color: var(--primary-text) !important;
+}
+
+.mat-form-field-label {
+  color: var(--secondary-text) !important;
+}
+
+.mat-input-element {
+  color: var(--primary-text) !important;
+}
+
+/* Dialog styles */
+.mat-dialog-container {
+  background-color: var(--primary-bg) !important;
+  color: var(--primary-text) !important;
+}
+
+/* Button styles */
+.mat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary {
+  background-color: var(--button-primary) !important;
+  color: var(--button-primary-text) !important;
+}
+
+.mat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-flat-button.mat-warn {
+  background-color: var(--button-warn) !important;
+  color: var(--button-warn-text) !important;
+}
+
+/* Icon styles */
+.mat-icon {
+  color: var(--primary-text) !important;
+}
+
+/* Checkbox styles */
+.mat-checkbox-frame {
+  border-color: var(--border-color) !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+  background-color: var(--button-primary) !important;
+}
+
+/* Dark theme specific overrides */
+.dark-theme {
+  .mat-toolbar.mat-primary {
+    background: var(--secondary-bg) !important;
+    color: var(--primary-text) !important;
+  }
+
+  .mat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-flat-button.mat-primary {
+    background-color: var(--button-primary) !important;
+    color: var(--button-primary-text) !important;
+  }
+
+  .mat-icon {
+    color: var(--primary-text) !important;
+  }
+
+  .mat-checkbox-frame {
+    border-color: var(--border-color) !important;
+  }
+
+  .mat-checkbox-checked .mat-checkbox-background {
+    background-color: var(--button-primary) !important;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--border-color) !important;
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+    color: var(--button-primary) !important;
+  }
+}
