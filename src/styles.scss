@@ -1,183 +1,125 @@
-/* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* ✨ New Color Theme */
 :root {
-  --primary-bg:#EDECEA;
-  --secondary-bg: #f5f5f5;
-  --primary-text: #333333;
-  --secondary-text: #666666;
-  --border-color: #e0e0e0;
-  --card-bg: #F8F9FA;
-  --table-header-bg: #4b6043;
-  --table-row-hover: #f5f5f5;
-  --button-primary: #4b6043;
+  --primary-bg: #f4f7ff;
+  --secondary-bg: #ffffffd9;
+  --primary-text: #1c1c1e;
+  --secondary-text: #5c5c5c;
+  --border-color: #dee2e6;
+  --card-bg: rgba(255, 255, 255, 0.6); /* frosted glass */
+  --table-header-bg: #7e9fff;
+  --table-row-hover: #e9efff;
+  --button-primary: #5c6bc0;
   --button-primary-text: #ffffff;
   --button-warn: #f44336;
   --button-warn-text: #ffffff;
+  --glass-blur: blur(10px);
 }
 
 .dark-theme {
-  --primary-bg: #222526;
-  --secondary-bg: #343434;
-  --primary-text: #CFD1D4;
-  --secondary-text: #A5A9AE;
-  --border-color: #505050;
-  --card-bg: #424242;
-  --table-header-bg: #424242;
-  --table-row-hover: #4a4a4a;
-  --button-primary: #347d39;
-  --button-primary-text: #CFD1D4;
-  --button-warn: #d32f2f;
+  --primary-bg: #1e1e2f;
+  --secondary-bg: #2a2a3d;
+  --primary-text: #e0e0e0;
+  --secondary-text: #a0a0a0;
+  --border-color: #4c4c6d;
+  --card-bg: rgba(44, 44, 66, 0.6);
+  --table-header-bg: #3949ab;
+  --table-row-hover: #2d2d44;
+  --button-primary: #7986cb;
+  --button-primary-text: #ffffff;
+  --button-warn: #e57373;
   --button-warn-text: #ffffff;
+  --glass-blur: blur(8px);
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Poppins', 'Roboto', "Helvetica Neue", sans-serif;
   background-color: var(--primary-bg);
   color: var(--primary-text);
   transition: background-color 0.3s ease, color 0.3s ease;
+  backdrop-filter: var(--glass-blur);
 }
 
-/* Container styles */
-.container {
-  background-color: var(--primary-bg);
+/* 🎨 Cards with Glass Effect */
+.mat-card, .task-card {
+  background-color: var(--card-bg);
   color: var(--primary-text);
-  padding: 20px;
-  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Header styles */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  color: var(--primary-text);
+/* 🌈 Status Highlights */
+.task-card.status-todo {
+  border-left: 4px solid #42a5f5;
+  background-color: rgba(66, 165, 245, 0.1);
+}
+.task-card.status-in-progress {
+  border-left: 4px solid #ffb300;
+  background-color: rgba(255, 179, 0, 0.1);
+}
+.task-card.status-done {
+  border-left: 4px solid #66bb6a;
+  background-color: rgba(102, 187, 106, 0.1);
 }
 
-.header h1, .header h2 {
-  color: var(--primary-text);
-  margin: 0;
+/* 🔘 Buttons */
+.mat-button, .mat-raised-button, .mat-flat-button {
+  border-radius: 20px !important;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
-
-/* Material Theme Overrides */
-.mat-app-background {
-  background-color: var(--primary-bg);
-}
-
-.mat-toolbar {
-  background-color: var(--secondary-bg) !important;
-  color: var(--primary-text) !important;
-}
-
-.mat-card {
-  background-color: var(--card-bg) !important;
-  color: var(--primary-text) !important;
-}
-
-/* Table styles */
-.mat-table {
-  background-color: var(--primary-bg) !important;
-  color: var(--primary-text) !important;
-}
-
-.mat-header-row {
-  background-color: var(--table-header-bg) !important;
-}
-
-.mat-row:hover {
-  background-color: var(--table-row-hover) !important;
-}
-
-.mat-header-cell {
-  color: var(--primary-text) !important;
-  font-weight: bold;
-}
-
-.mat-cell {
-  color: var(--primary-text) !important;
-}
-
-/* Form field styles */
-.mat-form-field {
-  color: var(--primary-text) !important;
-}
-
-.mat-form-field-label {
-  color: var(--secondary-text) !important;
-}
-
-.mat-input-element {
-  color: var(--primary-text) !important;
-}
-
-/* Dialog styles */
-.mat-dialog-container {
-  background-color: var(--primary-bg) !important;
-  color: var(--primary-text) !important;
-}
-
-/* Button styles */
-.mat-button.mat-primary,
-.mat-raised-button.mat-primary,
-.mat-flat-button.mat-primary {
+.mat-button.mat-primary {
   background-color: var(--button-primary) !important;
   color: var(--button-primary-text) !important;
 }
-
-.mat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-flat-button.mat-warn {
+.mat-button.mat-warn {
   background-color: var(--button-warn) !important;
   color: var(--button-warn-text) !important;
 }
 
-/* Icon styles */
-.mat-icon {
+/* ✅ Table */
+.mat-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mat-header-row {
+  background-color: var(--table-header-bg) !important;
+  color: #fff !important;
+}
+.mat-row:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+/* 📝 Form Fields */
+.mat-form-field {
+  color: var(--primary-text) !important;
+}
+.mat-input-element {
+  background: transparent;
+  border: none;
   color: var(--primary-text) !important;
 }
 
-/* Checkbox styles */
-.mat-checkbox-frame {
-  border-color: var(--border-color) !important;
-}
-
-.mat-checkbox-checked .mat-checkbox-background {
-  background-color: var(--button-primary) !important;
-}
-
-/* Dark theme specific overrides */
+/* 🌓 Dark Theme Overrides */
 .dark-theme {
-  .mat-toolbar.mat-primary {
-    background: var(--secondary-bg) !important;
+  .mat-toolbar {
+    background-color: var(--secondary-bg) !important;
     color: var(--primary-text) !important;
   }
-
-  .mat-button.mat-primary,
-  .mat-raised-button.mat-primary,
-  .mat-flat-button.mat-primary {
-    background-color: var(--button-primary) !important;
-    color: var(--button-primary-text) !important;
+  .mat-card {
+    background-color: var(--card-bg) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
-
   .mat-icon {
     color: var(--primary-text) !important;
-  }
-
-  .mat-checkbox-frame {
-    border-color: var(--border-color) !important;
-  }
-
-  .mat-checkbox-checked .mat-checkbox-background {
-    background-color: var(--button-primary) !important;
-  }
-
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: var(--border-color) !important;
-  }
-
-  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
-    color: var(--button-primary) !important;
   }
 }

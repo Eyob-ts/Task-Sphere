@@ -38,26 +38,35 @@
 
 .task-list {
   min-height: 100px;
-  padding: 8px;
+
   border-radius: 4px;
   background-color: var(--primary-bg);
 }
 
 .task-card {
-  margin-bottom: 8px;
-  background-color: var(--secondary-bg);
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05); // base for glassmorphism
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--primary-text);
-  cursor: move;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: grab;
 
-  &:last-child {
-    margin-bottom: 0;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    cursor: grabbing;
   }
 
   &.cdk-drag-preview {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border: none;
   }
 
   &.cdk-drag-placeholder {
@@ -70,20 +79,21 @@
 
   // Status-based styling
   &.status-done {
-    background-color: rgba(76, 175, 80, 0.1); // Light green
-    border-left: 4px solid #4CAF50; // Material green
+    background: rgba(76, 175, 80, 0.08);
+    border-left: 4px solid #4CAF50;
   }
 
   &.status-in-progress {
-    background-color: rgba(255, 152, 0, 0.1); // Light orange
-    border-left: 4px solid #FF9800; // Material orange
+    background: rgba(255, 152, 0, 0.08);
+    border-left: 4px solid #FF9800;
   }
 
   &.status-todo {
-    background-color: rgba(33, 150, 243, 0.1); // Light blue
-    border-left: 4px solid #2196F3; // Material blue
+    background: rgba(33, 150, 243, 0.08);
+    border-left: 4px solid #2196F3;
   }
 }
+
 
 .task-header {
   display: flex;

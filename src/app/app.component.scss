@@ -1,3 +1,13 @@
+@import 'src/styles';
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Poppins', 'Roboto', "Helvetica Neue", sans-serif;
+}
+
 .app-container {
   padding: 24px;
   max-width: 1200px;
@@ -7,6 +17,8 @@
   gap: 24px;
   min-height: calc(100vh - 64px); // Account for toolbar height
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 // Main content area
@@ -16,6 +28,12 @@
   flex-direction: column;
   gap: 24px;
   position: relative;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 // Loading and error states
@@ -23,12 +41,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 20px;
-  color: #666;
+  gap: 12px;
+  padding: 24px;
+  color: var(--secondary-text);
+  font-size: 1.1em;
+  
+  .mat-spinner {
+    --mdc-circular-progress-active-indicator-color: var(--button-primary);
+  }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin: 0 0 24px 0;
+  background-color: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+  
+  mat-icon {
+    color: #d32f2f;
+  }
   
   .dark-theme & {
-    color: #aaa;
+    background-color: rgba(211, 47, 47, 0.2);
+    color: #ff8a80;
+    
+    mat-icon {
+      color: #ff8a80;
+    }
   }
 }
 
@@ -38,42 +82,15 @@
     padding: 16px;
     gap: 16px;
   }
-  
+
   .main-content {
+    padding: 16px;
     gap: 16px;
+    border-radius: 8px;
   }
-}
-
-// Dark theme styles
-:host {
-  display: block;
-  min-height: 100vh;
-  background-color: #fafafa;
-  transition: background-color 0.3s ease;
-}
-
-.dark-theme :host {
-  background-color: #303030;
-  color: #ffffff;
-}
-
-// Smooth transitions for theme changes
-* {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.error-message {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #d32f2f;
-  background-color: #fde0e0;
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin-bottom: 16px;
   
-  .dark-theme & {
-    background-color: #5c2b2b;
-    color: #ff8a80;
+  .error-message {
+    padding: 12px 16px;
+    margin-bottom: 16px;
   }
 }
