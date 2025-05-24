@@ -1,21 +1,72 @@
 .full-width {
   width: 100%;
   margin-bottom: 16px;
+  display: block;
 }
 
 mat-dialog-content {
-  min-width: 400px;
+  min-width: 450px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 16px 24px;
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    
+    p {
+      margin-top: 16px;
+      color: #666;
+    }
+  }
 }
 
-mat-checkbox {
-  margin-top: 16px;
+mat-dialog-actions {
+  padding: 16px 24px;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 8px;
+  
+  button + button {
+    margin-left: 8px;
+  }
 }
+
+// Dark theme styles
 .dark-theme {
   background-color: #303030;
   color: #ffffff;
-}
+  
   mat-dialog-content {
     background-color: #303030;
     color: #ffffff;
+    
+    .loading-container p {
+      color: #aaa;
+    }
   }
+  
+  mat-dialog-actions {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+}
 
+// Responsive adjustments
+@media (max-width: 600px) {
+  mat-dialog-content {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .mat-dialog-container {
+    padding: 0;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+  }
+}

@@ -1,13 +1,23 @@
 <div class="container">
   <div class="header">
     <h2>Tasks</h2>
-    <button mat-raised-button color="primary" (click)="openTaskDialog()">
+    <button mat-raised-button color="primary" (click)="openTaskDialog()" [disabled]="loading">
       <mat-icon>add</mat-icon>
       New Task
     </button>
   </div>
 
-  <div class="board">
+  <div *ngIf="error" class="error-message">
+    <mat-icon color="warn">error_outline</mat-icon>
+    {{ error }}
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Loading tasks...</span>
+  </div>
+
+  <div class="board" *ngIf="!loading && !error">
     <!-- To Do Column -->
     <div class="column">
       <h3>To Do</h3>

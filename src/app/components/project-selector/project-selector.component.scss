@@ -1,0 +1,126 @@
+.project-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  mat-form-field {
+    flex: 1;
+    margin: 0;
+    
+    ::ng-deep {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+        margin: 0;
+      }
+      
+      .mat-form-field-flex {
+        background: #f8f9fa;
+        border-radius: 6px;
+        padding: 0 12px;
+      }
+      
+      .mat-form-field-underline {
+        display: none;
+      }
+      
+      .mat-form-field-infix {
+        padding: 12px 0;
+        border-top: 0;
+      }
+      
+      .mat-select-arrow {
+        color: #495057;
+      }
+    }
+  }
+  
+  .add-project-button {
+    flex-shrink: 0;
+    border-radius: 6px;
+    padding: 0 16px;
+    height: 48px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Dark theme styles
+:host-context(.dark-theme) {
+  .project-selector-container {
+    background: #2d333b;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    
+    mat-form-field {
+      ::ng-deep {
+        .mat-form-field-flex {
+          background: #22272e;
+          color: #adbac7;
+        }
+        
+        .mat-form-field-label,
+        .mat-select-value,
+        .mat-select-arrow {
+          color: #adbac7;
+        }
+        
+        .mat-form-field-ripple {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+    
+    .add-project-button {
+      background: #347d39;
+      color: #fff;
+      
+      &:hover {
+        background: #46954a;
+      }
+    }
+  }
+}
+
+// Light theme (default) styles
+:not(.dark-theme) {
+  .project-selector-container {
+    .add-project-button {
+      background: #f8f9fa;
+      color: #2c3e50;
+      border: 1px solid #dee2e6;
+      
+      &:hover {
+        background: #e9ecef;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 600px) {
+  .project-selector-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    
+    mat-form-field {
+      width: 100%;
+    }
+    
+    .add-project-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

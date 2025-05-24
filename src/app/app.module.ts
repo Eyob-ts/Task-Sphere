@@ -19,6 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
@@ -28,6 +30,7 @@ import { TaskFormDialogComponent } from './components/task-form-dialog/task-form
 import { HighlightOverdueDirective } from './directives/highlight-overdue.directive';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     ProjectFormDialogComponent,
     TaskFormDialogComponent,
     HighlightOverdueDirective,
-    ToolbarComponent
+    ToolbarComponent,
+    ProjectSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     MatCardModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     DragDropModule
   ],
   providers: [],

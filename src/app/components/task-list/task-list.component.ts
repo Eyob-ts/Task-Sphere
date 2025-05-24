@@ -12,10 +12,21 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  @Input() projectId: number;
+  @Input() set selectedProjectId(projectId: number | null) {
+    this._selectedProjectId = projectId;
+    this.loadTasks();
+  }
+  get selectedProjectId(): number | null {
+    return this._selectedProjectId;
+  }
+  private _selectedProjectId: number | null = null;
+
   todoTasks: Task[] = [];
   inProgressTasks: Task[] = [];
   doneTasks: Task[] = [];
+  
+  loading = false;
+  error: string | null = null;
 
   constructor(
     private taskService: TaskService,
@@ -28,15 +39,24 @@ export class TaskListComponent implements OnInit {
   }
 
   loadTasks(): void {
-    if (this.projectId) {
-      this.taskService.getTasksByProject(this.projectId).subscribe(tasks => {
+    this.loading = true;
+    this.error = null;
+    
+    const tasks$ = this.selectedProjectId 
+      ? this.taskService.getTasksByProject(this.selectedProjectId)
+      : this.taskService.getTasks();
+    
+    tasks$.subscribe({
+      next: (tasks) => {
         this.groupTasksByStatus(tasks);
-      });
-    } else {
-      this.taskService.getTasks().subscribe(tasks => {
-        this.groupTasksByStatus(tasks);
-      });
-    }
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading tasks:', err);
+        this.error = 'Failed to load tasks. Please try again.';
+        this.loading = false;
+      }
+    });
   }
 
   groupTasksByStatus(tasks: Task[]): void {
@@ -48,7 +68,7 @@ export class TaskListComponent implements OnInit {
   openTaskDialog(task?: Task): void {
     const dialogRef = this.dialog.open(TaskFormDialogComponent, {
       width: '500px',
-      data: { ...task, projectId: this.projectId }
+      data: { ...task, projectId: this.selectedProjectId }
     });
 
     dialogRef.afterClosed().subscribe(result => {

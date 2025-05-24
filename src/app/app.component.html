@@ -1,7 +1,14 @@
 <app-toolbar></app-toolbar>
 <div class="app-container">
-  <app-project-list></app-project-list>
-  <app-task-list></app-task-list>
+  <app-project-selector 
+    [selectedProjectId]="selectedProjectId"
+    (projectSelected)="onProjectSelected($event)"
+    (projectAdded)="onProjectAdded($event)">
+  </app-project-selector>
+  
+  <div class="main-content">
+    <app-task-list [selectedProjectId]="selectedProjectId"></app-task-list>
+  </div>
 </div>
 
 

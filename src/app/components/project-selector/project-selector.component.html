@@ -1,0 +1,23 @@
+<div class="project-selector-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Project</mat-label>
+    <mat-select [value]="selectedProjectId" (selectionChange)="onProjectChange($event)">
+      <mat-option [value]="null">
+        <span class="all-projects-option">All Projects</span>
+      </mat-option>
+      <mat-option *ngFor="let project of projects" [value]="project.id">
+        <div class="project-option">
+          <span class="project-name">{{ project.name }}</span>
+          <span class="project-tasks" *ngIf="getProjectTaskCount(project.id) > 0">
+            {{ getProjectTaskCount(project.id) }}
+          </span>
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <button mat-stroked-button class="add-project-button" (click)="openAddProjectDialog()">
+    <mat-icon>add</mat-icon>
+    Add Project
+  </button>
+</div>
