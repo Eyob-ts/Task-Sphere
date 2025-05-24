@@ -4,16 +4,26 @@
   display: block;
 }
 
+// Dialog title
+h2[mat-dialog-title] {
+  margin: 0;
+  padding: 16px 24px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--primary-text);
+  border-bottom: 1px solid var(--border-color);
+}
+
 // Dialog content
 .dialog-content {
-  min-width: 500px;
+  min-width: 400px;
   max-width: 100%;
-  padding: 24px 24px 8px;
+  padding: 20px 24px 8px;
   background: var(--card-bg);
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   margin: 0;
-  
+
   @media (max-width: 600px) {
     min-width: 100%;
     padding: 16px 16px 8px;
@@ -23,8 +33,8 @@
 // Form fields
 .full-width {
   width: 100%;
-  margin-bottom: 20px;
-  
+  margin-bottom: 16px;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -33,16 +43,12 @@
 // Date range container
 .date-range-container {
   display: flex;
+  flex-direction: column;
   gap: 16px;
   margin-bottom: 16px;
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 20px;
-  }
-  
+
   .date-field {
-    flex: 1;
+    width: 100%;
   }
 }
 
@@ -51,20 +57,20 @@
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   border-radius: 6px;
   background-color: rgba(211, 47, 47, 0.1);
   color: #d32f2f;
   font-size: 14px;
   border-left: 4px solid #d32f2f;
-  
+
   mat-icon {
     margin-right: 8px;
     font-size: 20px;
     height: 20px;
     width: 20px;
   }
-  
+
   span {
     flex: 1;
   }
@@ -77,7 +83,7 @@
   margin: -12px 0 16px;
   font-size: 12px;
   color: #f44336;
-  
+
   mat-icon {
     font-size: 16px;
     height: 16px;
@@ -88,48 +94,49 @@
 
 // Dialog actions
 .dialog-actions {
-  padding: 24px 0 0;
-  margin: 24px -24px -8px;
+  padding: 20px 0 0;
+  margin: 20px -24px -8px;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
   background: rgba(0, 0, 0, 0.02);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  
+
   button {
-    min-width: 100px;
+    min-width: 90px;
     margin: 0 8px 16px 0;
     border-radius: 20px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    
+    font-size: 14px;
+
     &[mat-button] {
       color: var(--secondary-text);
-      
+
       &:hover {
         background: rgba(0, 0, 0, 0.04);
       }
     }
-    
+
     &[mat-raised-button] {
       position: relative;
-      
+
       &.spinner {
         color: transparent;
-        
+
         ::ng-deep .mat-button-wrapper {
           visibility: hidden;
         }
-        
+
         .mat-spinner {
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          
+
           ::ng-deep circle {
             stroke: #fff;
           }
@@ -141,65 +148,95 @@
 
 // Dark theme overrides
 :host-context(.dark-theme) {
+  h2[mat-dialog-title] {
+    color: var(--primary-text);
+    border-bottom-color: var(--border-color);
+  }
+
   .error-message {
     background-color: rgba(211, 47, 47, 0.2);
     color: #ff8a80;
     border-left-color: #ff5252;
-    
+
     mat-icon {
       color: #ff5252;
     }
   }
-  
+
   .date-range-error {
     color: #ff8a80;
   }
-  
+
   .dialog-actions {
     border-top-color: var(--border-color);
     background: rgba(255, 255, 255, 0.05);
-    
+
     button[mat-button] {
       color: var(--secondary-text);
-      
+
       &:hover {
         background: rgba(255, 255, 255, 0.1);
       }
     }
   }
-  
+
   ::ng-deep {
+    .mat-dialog-container {
+      background: var(--card-bg);
+      color: var(--primary-text);
+      padding: 0;
+    }
+
+    .mat-dialog-surface {
+      background: var(--card-bg);
+      color: var(--primary-text);
+    }
+
     .mat-form-field-appearance-outline .mat-form-field-outline {
       background: var(--card-bg);
       border-radius: 4px;
     }
-    
+
     .mat-form-field-label {
       color: var(--secondary-text);
     }
-    
+
     .mat-input-element {
       color: var(--primary-text);
       caret-color: var(--button-primary);
     }
-    
+
     .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline-thick,
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
       color: var(--button-primary);
     }
-    
+
     .mat-form-field-ripple {
       background-color: var(--button-primary);
+    }
+
+    .mat-button {
+      color: var(--secondary-text);
+    }
+
+    .mat-raised-button {
+      background-color: var(--button-primary);
+      color: var(--button-text);
     }
   }
 }
 
 // Responsive adjustments
 @media (max-width: 600px) {
+  h2[mat-dialog-title] {
+    padding: 12px 16px;
+    font-size: 1.1rem;
+  }
+
   .dialog-content {
     padding: 16px 16px 8px;
   }
-  
+
   .mat-dialog-container {
     padding: 0 !important;
     max-width: 100vw !important;
@@ -208,14 +245,15 @@
     max-height: 100% !important;
     border-radius: 0 !important;
   }
-  
+
   .dialog-actions {
     margin: 16px -16px -8px;
     padding: 16px 16px 0;
-    
+
     button {
       margin-bottom: 12px;
-      min-width: 90px;
+      min-width: 80px;
+      font-size: 13px;
     }
   }
 }

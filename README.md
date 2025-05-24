@@ -1,27 +1,156 @@
-# TaskSphere
+# Task-Sphere
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+Task-Sphere is a modern task management application built with Angular 8, featuring a beautiful Material Design interface and comprehensive project management capabilities.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- 📋 Full CRUD operations for Projects and Tasks
+- 🎨 Beautiful UI using Angular Material
+- 🌓 Dark/Light theme support
+- 📱 Fully responsive design
+- 📅 Date range selection for projects
+- 🔄 Real-time updates
+- 📊 Project progress tracking
+- 🎯 Task status management
 
-## Code scaffolding
+## Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Before you begin, ensure you have the following installed:
+- Node.js (v12.x or later)
+- npm (v6.x or later)
+- Angular CLI (v8.x)
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. Clone the repository:
+```bash
+git clone https://github.com/Eyob-ts/Task-Sphere.git
+cd Task-Sphere
+```
 
-## Running unit tests
+2. Install dependencies:
+```bash
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Start the development server:
 
-## Running end-to-end tests
+For Windows (PowerShell):
+```powershell
+$env:NODE_OPTIONS="--openssl-legacy-provider"; ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+For Windows (Command Prompt):
+```cmd
+set NODE_OPTIONS=--openssl-legacy-provider && ng serve
+```
 
-## Further help
+For Linux/Mac:
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider && ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The application will be available at `http://localhost:4200/`
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/         # Angular components
+│   ├── services/          # Angular services
+│   ├── models/            # Data models
+│   ├── directives/        # Custom directives
+│   └── styles/            # Global styles
+├── assets/                # Static assets
+└── environments/          # Environment configurations
+```
+
+## Key Components
+
+- **Project Management**
+  - Create, read, update, and delete projects
+  - Set project start and end dates
+  - Track project progress
+
+- **Task Management**
+  - Create, read, update, and delete tasks
+  - Assign tasks to projects
+  - Track task status
+
+## Development
+
+### Running Tests
+
+```bash
+# Unit tests
+npm test
+
+# End-to-end tests
+npm run e2e
+```
+
+### Building for Production
+
+For Windows (PowerShell):
+```powershell
+$env:NODE_OPTIONS="--openssl-legacy-provider"; ng build --prod
+```
+
+For Windows (Command Prompt):
+```cmd
+set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod
+```
+
+For Linux/Mac:
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider && ng build --prod
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Technologies Used
+
+- Angular 8
+- Angular Material
+- TypeScript
+- SCSS
+- RxJS
+- Angular In-Memory Web API
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+
+
+## Acknowledgments
+
+- Angular Material for the beautiful UI components
+- Angular team for the amazing framework
+- All contributors who have helped shape this project
+
+## Support
+
+If you encounter any issues or have questions, please:
+1. Check the [Issues](https://github.com/Eyob-ts/Task-Sphere/issues) section
+2. Create a new issue if your problem isn't already listed
+
+## Author
+
+Your Name - [@Eyob-ts](https://github.com/Eyob-ts)
+
+---
+
+Made with ❤️ using Angular
