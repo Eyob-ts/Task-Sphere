@@ -1,60 +1,61 @@
-<h2 mat-dialog-title>{{dialogTitle}}</h2>
+<h2 mat-dialog-title>{{ data ? 'Edit Project' : 'New Project' }}</h2>
 
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-dialog-content class="dialog-content">
+  <div class="dialog-content">
     <!-- Error message -->
     <div *ngIf="error" class="error-message">
       <mat-icon>error_outline</mat-icon>
       <span>{{error}}</span>
     </div>
 
-    <!-- Name Field -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Project Name</mat-label>
-      <input 
-        matInput 
-        formControlName="name" 
-        placeholder="Enter project name" 
-        [maxlength]="100"
-        required>
-      <mat-hint align="end">{{form.get('name')?.value?.length || 0}}/100</mat-hint>
-      <mat-error *ngIf="form.get('name')?.hasError('required')">
-        Project name is required
-      </mat-error>
-      <mat-error *ngIf="form.get('name')?.hasError('minlength')">
-        Name must be at least 3 characters long
-      </mat-error>
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field class="full-width">
+        <mat-label>Project Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Enter project name"
+          [maxlength]="100"
+          required>
+        <mat-hint align="end">{{form.get('name')?.value?.length || 0}}/100</mat-hint>
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          Project name is required
+        </mat-error>
+        <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+          Name must be at least 3 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-    <!-- Description Field -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
-      <textarea 
-        matInput 
-        formControlName="description" 
-        placeholder="Enter project description"
-        [maxlength]="500"
-        rows="3"
-        required>
-      </textarea>
-      <mat-hint align="end">{{form.get('description')?.value?.length || 0}}/500</mat-hint>
-      <mat-error *ngIf="form.get('description')?.hasError('required')">
-        Description is required
-      </mat-error>
-      <mat-error *ngIf="form.get('description')?.hasError('minlength')">
-        Description must be at least 10 characters long
-      </mat-error>
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          placeholder="Enter project description"
+          [maxlength]="500"
+          rows="3"
+          required>
+        </textarea>
+        <mat-hint align="end">{{form.get('description')?.value?.length || 0}}/500</mat-hint>
+        <mat-error *ngIf="form.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+        <mat-error *ngIf="form.get('description')?.hasError('minlength')">
+          Description must be at least 10 characters long
+        </mat-error>
+      </mat-form-field>
+    </div>
 
     <div class="date-range-container">
-      <!-- Start Date -->
-      <mat-form-field appearance="outline" class="date-field">
+      <mat-form-field class="full-width">
         <mat-label>Start Date</mat-label>
-        <input 
-          matInput 
-          [matDatepicker]="startPicker" 
+        <input
+          matInput
+          [matDatepicker]="startPicker"
           formControlName="startDate"
           [min]="minStartDate"
           required>
@@ -65,12 +66,11 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- End Date -->
-      <mat-form-field appearance="outline" class="date-field">
+      <mat-form-field class="full-width">
         <mat-label>End Date</mat-label>
-        <input 
-          matInput 
-          [matDatepicker]="endPicker" 
+        <input
+          matInput
+          [matDatepicker]="endPicker"
           formControlName="endDate"
           [min]="minEndDate"
           required>
@@ -86,24 +86,23 @@
       <mat-icon>warning</mat-icon>
       End date must be after start date
     </mat-error>
-  </mat-dialog-content>
+  </div>
 
-  <mat-dialog-actions align="end" class="dialog-actions">
-    <button 
-      mat-button 
-      type="button" 
+  <div class="dialog-actions">
+    <button
+      mat-button
+      type="button"
       (click)="onCancel()"
       [disabled]="loading">
       Cancel
     </button>
-    <button 
-      mat-raised-button 
-      color="primary" 
-      type="submit" 
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
       [disabled]="!form.valid || loading"
       [class.spinner]="loading">
-      <span *ngIf="!loading">Save Project</span>
-      <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+      {{ data ? 'Update' : 'Create' }}
     </button>
-  </mat-dialog-actions>
+  </div>
 </form>

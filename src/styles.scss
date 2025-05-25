@@ -15,6 +15,18 @@
   --button-warn: #f44336;
   --button-warn-text: #ffffff;
   --glass-blur: blur(10px);
+
+  // Dialog specific variables
+  --dialog-bg: #ffffff;
+  --dialog-text: #1c1c1e;
+  --dialog-border: #dee2e6;
+  --dialog-action-bg: rgba(0, 0, 0, 0.02);
+  --dialog-action-hover: rgba(0, 0, 0, 0.04);
+
+  // Scrollbar variables
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a8a8a8;
 }
 
 .dark-theme {
@@ -31,6 +43,18 @@
   --button-warn: #e57373;
   --button-warn-text: #ffffff;
   --glass-blur: blur(8px);
+
+  // Dialog specific variables
+  --dialog-bg: #2a2a3d;
+  --dialog-text: #e0e0e0;
+  --dialog-border: #4c4c6d;
+  --dialog-action-bg: rgba(255, 255, 255, 0.05);
+  --dialog-action-hover: rgba(255, 255, 255, 0.1);
+
+  // Scrollbar variables
+  --scrollbar-track: #2a2a3d;
+  --scrollbar-thumb: #4c4c6d;
+  --scrollbar-thumb-hover: #5c5c8d;
 }
 
 body {
@@ -41,6 +65,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   backdrop-filter: var(--glass-blur);
 }
+
 
 /* 🎨 Cards with Glass Effect */
 .mat-card, .task-card {
@@ -75,15 +100,73 @@ body {
 .mat-button, .mat-raised-button, .mat-flat-button {
   border-radius: 20px !important;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  min-width: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }
-.mat-button.mat-primary {
+
+// Primary Button
+.mat-button.mat-primary,
+.mat-raised-button.mat-primary {
   background-color: var(--button-primary) !important;
   color: var(--button-primary-text) !important;
+  border: 2px solid var(--button-primary) !important;
+
+  &:hover {
+    background-color: var(--button-primary-hover) !important;
+    border-color: var(--button-primary-hover) !important;
+  }
 }
-.mat-button.mat-warn {
+
+// Success Button
+.mat-button.mat-success,
+.mat-raised-button.mat-success {
+  background-color: var(--button-success) !important;
+  color: var(--button-success-text) !important;
+  border: 2px solid var(--button-success) !important;
+
+  &:hover {
+    background-color: var(--button-success-hover) !important;
+    border-color: var(--button-success-hover) !important;
+  }
+}
+
+// Warning Button
+.mat-button.mat-warn,
+.mat-raised-button.mat-warn {
   background-color: var(--button-warn) !important;
   color: var(--button-warn-text) !important;
+  border: 2px solid var(--button-warn) !important;
+
+  &:hover {
+    background-color: var(--button-warn-hover) !important;
+    border-color: var(--button-warn-hover) !important;
+  }
+}
+
+// Info Button
+.mat-button.mat-info,
+.mat-raised-button.mat-info {
+  background-color: var(--button-info) !important;
+  color: var(--button-info-text) !important;
+  border: 2px solid var(--button-info) !important;
+
+  &:hover {
+    background-color: var(--button-info-hover) !important;
+    border-color: var(--button-info-hover) !important;
+  }
 }
 
 /* ✅ Table */
@@ -121,5 +204,230 @@ body {
   }
   .mat-icon {
     color: var(--primary-text) !important;
+  }
+}
+
+/* Dialog Styles */
+.mat-dialog-container {
+  background: var(--dialog-bg) !important;
+  color: var(--dialog-text) !important;
+  padding: 0 !important;
+}
+
+.mat-dialog-surface {
+  background: var(--dialog-bg) !important;
+  color: var(--dialog-text) !important;
+}
+
+/* Dialog Actions */
+.mat-dialog-actions {
+  padding: 20px 0 0;
+  margin: 20px -24px -8px;
+  border-top: 1px solid var(--dialog-border);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--dialog-action-bg);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  button {
+    min-width: 90px;
+    margin: 0 8px 16px 0;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+
+    &[mat-button] {
+      color: var(--secondary-text);
+
+      &:hover {
+        background: var(--dialog-action-hover);
+      }
+    }
+  }
+}
+
+/* Form Fields in Dialog */
+.mat-form-field {
+  .mat-form-field-label {
+    color: var(--secondary-text) !important;
+  }
+
+  .mat-input-element {
+    color: var(--dialog-text) !important;
+  }
+
+  .mat-form-field-outline {
+    background: var(--dialog-bg) !important;
+  }
+}
+
+/* Dark Theme Dialog Overrides */
+.dark-theme {
+  .mat-dialog-container {
+    background: var(--dialog-bg) !important;
+    color: var(--dialog-text) !important;
+  }
+
+  .mat-dialog-actions {
+    border-top-color: var(--dialog-border);
+    background: var(--dialog-action-bg);
+
+    button[mat-button] {
+      color: var(--secondary-text);
+
+      &:hover {
+        background: var(--dialog-action-hover);
+      }
+    }
+  }
+
+  .mat-form-field {
+    .mat-form-field-label {
+      color: var(--secondary-text) !important;
+    }
+
+    .mat-input-element {
+      color: var(--dialog-text) !important;
+    }
+
+    .mat-form-field-outline {
+      background: var(--dialog-bg) !important;
+    }
+  }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Responsive Form Styles */
+@media (max-width: 768px) {
+  .mat-dialog-container {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .dialog-content {
+    padding: 16px !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mat-dialog-actions {
+    margin: 16px -16px -8px !important;
+    padding: 16px !important;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    button {
+      margin: 0 !important;
+      flex: 1;
+      min-width: 120px;
+    }
+  }
+
+  .mat-form-field {
+    width: 100% !important;
+  }
+
+  .date-range-container {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+/* Responsive Table Styles */
+@media (max-width: 768px) {
+  .mat-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .mat-header-cell,
+  .mat-cell {
+    padding: 0 8px;
+  }
+
+  .mat-column-actions {
+    position: sticky;
+    right: 0;
+    background: var(--primary-bg);
+    z-index: 1;
+  }
+}
+
+/* Responsive Container */
+.container {
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
+}
+
+/* Responsive Header */
+.header {
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+
+    h1 {
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+    }
   }
 }

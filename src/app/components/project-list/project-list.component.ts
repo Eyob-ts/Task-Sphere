@@ -44,10 +44,10 @@ export class ProjectListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Dialog result:', result);
-        const operation = result.id 
+        const operation = result.id
           ? this.projectService.updateProject(result)
           : this.projectService.createProject(result);
-          
+
         operation.subscribe({
           next: () => {
             console.log('Project operation successful');
