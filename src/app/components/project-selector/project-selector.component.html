@@ -2,6 +2,10 @@
   <mat-form-field appearance="fill">
     <mat-label>Select Project</mat-label>
     <mat-select [value]="selectedProjectId" (selectionChange)="onProjectChange($event)">
+      <mat-select-trigger>
+        {{ getSelectedProjectName() }}
+      </mat-select-trigger>
+
       <mat-option [value]="null">
         <span class="all-projects-option">All Projects</span>
       </mat-option>
@@ -11,11 +15,19 @@
           <span class="project-tasks" *ngIf="getProjectTaskCount(project.id) > 0">
             {{ getProjectTaskCount(project.id) }}
           </span>
+          <div class="project-actions" (click)="$event.stopPropagation()">
+            <button mat-icon-button color="primary" (click)="editProject(project)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProject(project.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
       </mat-option>
     </mat-select>
   </mat-form-field>
-  
+
   <button mat-stroked-button class="add-project-button" (click)="openAddProjectDialog()">
     <mat-icon>add</mat-icon>
     Add Project

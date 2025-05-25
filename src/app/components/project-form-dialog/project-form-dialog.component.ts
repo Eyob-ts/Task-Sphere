@@ -26,7 +26,7 @@ export class ProjectFormDialogComponent implements OnInit {
   ) {
     this.dialogTitle = data && data.id ? 'Edit Project' : 'New Project';
     this.minEndDate = new Date();
-    
+
     this.form = this.fb.group({
       id: [data && data.id ? data.id : null],
       name: [data && data.name ? data.name : '', [
@@ -62,11 +62,11 @@ export class ProjectFormDialogComponent implements OnInit {
     const endDateControl = group.get('endDate');
     const startDate = startDateControl ? startDateControl.value : null;
     const endDate = endDateControl ? endDateControl.value : null;
-    
+
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
-      
+
       if (start >= end) {
         return { 'dateRange': true };
       }
@@ -78,7 +78,7 @@ export class ProjectFormDialogComponent implements OnInit {
     if (this.form.valid) {
       this.loading = true;
       this.error = null;
-      
+
       const formValue = this.form.value;
       const projectData: Project = {
         id: formValue.id,
@@ -88,18 +88,21 @@ export class ProjectFormDialogComponent implements OnInit {
         endDate: new Date(formValue.endDate)
       };
 
-      const request = projectData.id 
+      const request = projectData.id
         ? this.projectService.updateProject(projectData)
         : this.projectService.createProject(projectData);
 
       request.subscribe({
         next: (savedProject) => {
+          const projectName = (savedProject && savedProject.name) ? savedProject.name : projectData.name;
+          const operation = projectData.id ? 'updated' : 'created';
+
           this.snackBar.open(
-            `Project "${savedProject.name}" ${projectData.id ? 'updated' : 'created'} successfully!`,
+            `Project "${projectName}" ${operation} successfully!`,
             'Close',
             { duration: 3000 }
           );
-          this.dialogRef.close(savedProject);
+          this.dialogRef.close(savedProject || projectData);
         },
         error: (error) => {
           console.error('Error saving project:', error);
